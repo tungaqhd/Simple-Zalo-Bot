@@ -4,7 +4,6 @@ const router = express.Router();
 const bot = require('../helpers/bot');
 router.post('/', async(req, res) => {
     try {
-        console.log(req.body.message.text, req.body.sender.id);
         const message = req.body.message.text;
         const senderId = req.body.sender.id;
         
@@ -12,7 +11,7 @@ router.post('/', async(req, res) => {
         res.send();
     } catch(e) {
         res.status(500);
-        resizeBy.send(e);
+        res.send(e);
     }
 });
 module.exports = router;
