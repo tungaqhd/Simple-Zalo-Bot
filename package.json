@@ -1,0 +1,18 @@
+{
+  "name": "chat-bot",
+  "version": "1.0.0",
+  "description": "chat bot bds",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app",
+    "start": "node app"
+  },
+  "author": "tungaqhd",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}

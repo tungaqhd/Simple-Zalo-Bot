@@ -1,0 +1,6 @@
+exports.PORT = process.env.port || 3000
+exports.ACCESS_TOKEN = "aZtR1X6Dao6METG64egN8Pu-r0aRbC91_5hZ9p6QrmF7UvudIgoF1Oj1ktnqhvecccZQRsc_nYQh2F5oTkMpEBeeynj_nU52WpBPEmF-a67S4w4y3U6sPjGL_bilsiDvpYdo1pRywtgs6zmrGVJy4PORkqjXgBerxHYFT1h6gGBOEh9c6uprD9i-r7PssDDIX1t80rgXodg9Tu8vHP6USx1oYnLnmvTLztxJ5IYAnaB3LvidEuI1TSLQnWS7Zeznz3ckKmB_wmvfORI4S10Lbvyb";
+
+exports.APP_SECRET = 'you app_secret';
+exports.VALIDATION_TOKEN = 'TokenTuyChon';
+exports.PAGE_ACCESS_TOKEN = 'your page_access_token';
