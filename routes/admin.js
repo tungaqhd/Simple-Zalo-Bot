@@ -4,6 +4,10 @@ const router = express.Router();
 const bot = require('../helpers/bot');
 const Robot = require('../models/Robot');
 
+router.get('/', (req, res) => {
+    res.render('admin');
+})
+
 router.get('/send', async (req, res) => {
     views = {};
     views.page = 'Send Message';
