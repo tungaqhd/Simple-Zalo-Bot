@@ -5,12 +5,16 @@ const bot = require('../helpers/bot');
 const Robot = require('../models/Robot');
 
 router.get('/', (req, res) => {
-    res.render('admin');
+    let views = {
+        page: 'Admin Login'
+    }
+    res.render('admin', {views});
 })
 
 router.get('/send', async (req, res) => {
-    views = {};
-    views.page = 'Send Message';
+    let views = {
+        page: 'Send Message'
+    }
     res.render('send', { views });
 });
 router.post('/send', async (req, res) => {
