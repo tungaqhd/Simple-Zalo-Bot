@@ -12,6 +12,11 @@ exports.sendMessage = async (userId, message) => {
             "text": message
         }
     });
+
+    if(result.data.message != 'Success') {
+        throw new Error(`Có lỗi khi gửi tin nhắn: ${result.data.message}`);
+    }
+
     return result.data;
 }
 
@@ -28,5 +33,9 @@ exports.getUsers = async(offset, count) => {
         }
     });
 
-    return result.data.data;   
+    if(result.data.message != 'Success') {
+        throw new Error(`Có lỗi khi lấy danh sách người theo dõi: ${result.data.message}`);
+    }
+
+    return result.data.data;
 }

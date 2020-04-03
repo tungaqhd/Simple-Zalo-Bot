@@ -1,0 +1,44 @@
+<%- include('header') %>
+<div class="container">
+    <div id="result"></div>
+    <form action="" method="POST">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="code">Mã</label>
+                    <input type="text" class="form-control" name="code" aria-describedby="code" autocomplete="off">
+                    <small id="code" class="form-text text-muted">Mã nhận diện khi người dùng nhắn cho Bot</small>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="message">Nhập tin nhắn trả lời</label>
+                    <textarea class="form-control" name="message" rows="5"></textarea>
+                </div>
+            </div>
+        </div>
+        <button id="robot" class="btn btn-lg btn-block btn-success">Thêm/ Cập nhật</button>
+    </form>
+    <hr>
+    <table class="table table-striped text-center">
+        <thead>
+          <tr>
+            <th scope="col">Mã</th>
+            <th scope="col">Tin nhắn</th>
+            <th scope="col">Lần cuối cập nhật</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% views.messages.forEach((message) => { %>
+          <tr>
+            <td><%- message.code %></td>
+            <td>
+              <textarea class="form-control" name="message" rows="3"><%- message.message %></textarea>
+            </td>
+            <td><%=message.lastUpdate%></td>
+          </tr>
+            <% }) %>
+        </tbody>
+      </table>
+</div>
+<%- include('footer') %>
