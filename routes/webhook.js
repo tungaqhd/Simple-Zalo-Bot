@@ -8,7 +8,7 @@ const zaloMiddleware = require('../middlewares/zaloMiddleware');
 router.post('/', zaloMiddleware.auth, async (req, res) => {
     try {
         if (req.body.event_name === 'user_send_text') {
-            const message = req.body.message.text.toLowerCase();
+            const message = req.body.message.text;
             const senderId = req.body.sender.id;
 
             if (message === 'about') {

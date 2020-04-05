@@ -1,15 +1,15 @@
 <%- include('header') %>
 <div class="container">
-    <form action="" method="POST">
+    <form action="/admin/auth" method="POST">
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name="username" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="text" class="form-control" id="password" name="password" autocomplete="off">
+            <input type="password" class="form-control" id="password" name="password" autocomplete="off">
         </div>
-        <button class="btn btn-lg btn-block btn-success" disabled>Đăng nhập</button>
+        <button type="submit" class="btn btn-lg btn-block btn-success">Đăng nhập</button>
     </form>
 </div>
 <%- include('footer') %>

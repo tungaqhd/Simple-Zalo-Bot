@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 
+const config = require('../config/config');
 const bot = require('../helpers/bot');
 const Robot = require('../models/Robot');
 
+const adminMiddleware = require('../middlewares/adminMiddleware');
 router.get('/', (req, res) => {
     let views = {
         page: 'Admin Login'
@@ -11,13 +14,23 @@ router.get('/', (req, res) => {
     res.render('admin', {views});
 })
 
-router.get('/send', async (req, res) => {
+router.post('/auth', async(req, res) => {
+    const {username, password} = req.body;
+    if(username === config.ADMIN_USERNAME && password === config.ADMIN_PASSWORD) {
+        res.cookie('token', jwt.sign({isAdmin: true}, config.JWT_TOKEN, {expiresIn: '24h'}), {maxAge: 24*60*60000});
+        return res.redirect('/admin/send');
+    }
+
+    res.redirect('/admin');
+});
+
+router.get('/send', adminMiddleware.auth, async (req, res) => {
     let views = {
         page: 'Send Message'
     }
     res.render('send', { views });
 });
-router.post('/send', async (req, res) => {
+router.post('/send', adminMiddleware.auth, async (req, res) => {
     try {
         const { message } = req.body;
         let users = [];
@@ -54,7 +67,7 @@ router.post('/send', async (req, res) => {
     }
 });
 
-router.get('/robot', async (req, res) => {
+router.get('/robot', adminMiddleware.auth, async (req, res) => {
     try {
         let views = {
             page: 'Robot'
@@ -67,7 +80,7 @@ router.get('/robot', async (req, res) => {
         res.status(500).send(e);
     }
 });
-router.post('/robot', async (req, res) => {
+router.post('/robot', adminMiddleware.auth, async (req, res) => {
     try {
         const { code, message } = req.body;
 
