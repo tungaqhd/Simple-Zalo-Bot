@@ -82,12 +82,12 @@ router.get('/robot', adminMiddleware.auth, async (req, res) => {
 });
 router.post('/robot', adminMiddleware.auth, async (req, res) => {
     try {
-        const { code, message } = req.body;
+        let { code, message } = req.body;
 
+        code = code.toLowerCase()
         const d = new Date();
         const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
         const vnTime = new Date(utc + (3600000 * 7));
-        console.log(vnTime.getDay());
         const lastUpdate = `${vnTime.getDate()}/${vnTime.getMonth()+1}/${vnTime.getFullYear()} ${vnTime.getHours()}:${vnTime.getMinutes()}`;
 
         let result = await Robot.findOneAndUpdate({ code }, { message, lastUpdate });
