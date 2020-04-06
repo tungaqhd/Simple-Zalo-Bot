@@ -25,7 +25,12 @@ router.post('/', zaloMiddleware.auth, async (req, res) => {
             }
         } else if (req.body.event_name === 'follow') {
             const senderId = req.body.follower.id;
-            await bot.sendMessage(senderId, 'Chào mừng bạn đến với kênh tư vấn Auto Trading, tín hiệu mua bán chứng khoán phái sinh');
+            const result = await Robot.findOne({ code: 'giothieu' });
+            if (!result) {
+                await bot.sendMessage(senderId, 'Chào mừng bạn đến với kênh tư vấn Auto Trading, tín hiệu mua bán chứng khoán phái sinh');
+            } else {
+                await bot.sendMessage(senderId, result.message);
+            }
         }
         res.send();
     } catch (e) {
